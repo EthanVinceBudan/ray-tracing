@@ -3,8 +3,8 @@ package main;
 public class ArgHandler {
 	
 	public static String[] getArgs(String[] args) {
-		String width = "256";
-		String height = "256";
+		String width = "1920";
+		String height = "1080";
 		String depth = "4";
 		String samples = "10";
 		String fileName = "preview.bmp";
