@@ -15,7 +15,11 @@ public class ArgHandler {
 		
 		switch (args.length) {
 		case 1:
+			fileName = args[0];
 			break;
+		case 2:
+			samples = args[0];
+			fileName = args[1];
 		case 5:
 			width = args[0];
 			height = args[1];

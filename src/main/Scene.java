@@ -28,21 +28,18 @@ public class Scene {
 		Camera camera = new Camera(new Point3D(0, 0, 0), width, height, Math.PI/2);
 
 		// Definition of materials used
-		Material colour_shiny = new Material(new Colour(1, 0, 0), new Colour(1, 1, 1), false, false);
 		Material light = new Material(new Colour(1,1,1), new Colour(1, 1, 1), true, false);
 		Material white_shiny = new Material(new Colour(0.8, 0.8, 0.8), new Colour(1, 1, 1), false, false);
 
 		// Definition of Solids in scene
 		ArrayList<Solid> solids = new ArrayList<Solid>();
 
-		solids.add(new Sphere(new Point3D(3, 0, -0.2), 0.8, colour_shiny));
+		solids.add(new Sphere(new Point3D(3, 0, 0), 1, white_shiny));
 		solids.add(new Plane(new Point3D(0, 0, -1), new Vector(0, 0, 1), white_shiny));
-		solids.add(new Plane(new Point3D(5,0,0), new Vector(-1,0,0), white_shiny));
-		solids.add(new Plane(new Point3D(0,2,0), new Vector(0,-1,0), white_shiny));
-		solids.add(new Plane(new Point3D(0,-2,0), new Vector(0,1,0), white_shiny));
-		solids.add(new Plane(new Point3D(0,0,2), new Vector(0,0,-1), light));
+		solids.add(new Sphere(new Point3D(0,0,12), 10, light));
 
-		Renderer[] render = new Renderer[6];
+		Runtime env = Runtime.getRuntime();
+		Renderer[] render = new Renderer[env.availableProcessors()];
 		for (int i = 0; i < render.length; i++) {
 			render[i] = new Renderer(solids, camera, numSamples, depth);
 		}
@@ -52,6 +49,7 @@ public class Scene {
 			imageData[i] = new Colour(0, 0, 0);
 		}
 
+		System.out.printf("Using all %d cores detected. ", env.availableProcessors());
 		System.out.println("Starting frame...");
 		for (Renderer r : render) {
 			r.start();
