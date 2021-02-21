@@ -27,6 +27,13 @@ public class Point3D {
 		return this.z;
 	}
 	
+	public static Point3D parsePoint(String[] S) {
+		double x = Double.parseDouble(S[0]);
+		double y = Double.parseDouble(S[1]);
+		double z = Double.parseDouble(S[2]);
+		return new Point3D(x,y,z);
+	}
+	
 	public String toString() {
 		return "(" + this.x + ", " + this.y + ", " + this.z + ")";
 	}

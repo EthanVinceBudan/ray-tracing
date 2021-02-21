@@ -53,6 +53,13 @@ public class Colour {
 	public double[] asArray() {
 		return new double[] { this.red, this.green, this.blue };
 	}
+	
+	public static Colour parseColour(String[] S) {
+		double r = Double.parseDouble(S[0]);
+		double g = Double.parseDouble(S[1]);
+		double b = Double.parseDouble(S[2]);
+		return new Colour(r,g,b);
+	}
 
 	public String toString() {
 		return "(" + this.red + ", " + this.green + ", " + this.blue + ")";

@@ -89,6 +89,13 @@ public class Vector {
 	public double getMagnitude() {
 		return Math.sqrt(this.dx * this.dx + this.dy * this.dy + this.dz * this.dz);
 	}
+	
+	public static Vector parseVector(String[] S) {
+		double dx = Double.parseDouble(S[0]);
+		double dy = Double.parseDouble(S[1]);
+		double dz = Double.parseDouble(S[2]);
+		return new Vector(dx,dy,dz);
+	}
 
 	public String toString() {
 		return this.dx + " " + this.dy + " " + this.dz;

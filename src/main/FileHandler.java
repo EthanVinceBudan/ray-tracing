@@ -61,7 +61,7 @@ public class FileHandler {
 		ArrayList<Material> matls = new ArrayList<Material>();
 		ArrayList<Solid> solids = new ArrayList<Solid>();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
+			var br = new BufferedReader(new FileReader(file));
 
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -70,41 +70,41 @@ public class FileHandler {
 				if (words[0].equals("size:")) {
 					result[0] = Integer.parseInt(words[1]);
 					result[1] = Integer.parseInt(words[2]);
+
 				} else if (words[0].equals("depth:")) {
 					result[2] = Integer.parseInt(words[1]);
+
 				} else if (words[0].equals("samples:")) {
 					result[3] = Integer.parseInt(words[1]);
+
 				} else if (words[0].equals("camera:")) {
-					String[] location = words[1].strip().split(",");
-					Point3D L = new Point3D(Double.parseDouble(location[0]), Double.parseDouble(location[1]),
-							Double.parseDouble(location[2]));
+					Point3D L = Point3D.parsePoint(words[1].strip().split(","));
 					Camera c = new Camera(L, (int) result[0], (int) result[1], Double.parseDouble(words[2]));
 					result[4] = c;
+
 				} else if (words[0].equals("out:")) {
 					result[5] = words[1];
+
 				} else if (words[0].equals("materials")) {
 					String subLine = br.readLine();
 					while (!subLine.equals("}")) {
 						String[] subWords = subLine.strip().split(" ");
-						if (!subWords[0].equals("//")) {
+						if (!subWords[0].equals("//") && !subWords[0].isBlank()) {
 							String name = subWords[0].substring(0, subWords[0].length() - 1);
-							String[] sCol = subWords[1].strip().split(",");
-							Colour C = new Colour(Double.parseDouble(sCol[0]), Double.parseDouble(sCol[1]),
-									Double.parseDouble(sCol[2]));
+							Colour C = Colour.parseColour(subWords[1].strip().split(","));
 							boolean emitter = Boolean.parseBoolean(subWords[2]);
 							boolean sink = Boolean.parseBoolean(subWords[3]);
 							matls.add(new Material(name, C, emitter, sink));
 						}
 						subLine = br.readLine();
 					}
+
 				} else if (words[0].equals("scene")) {
 					String subLine = br.readLine();
 					while (!subLine.equals("}")) {
 						String[] subWords = subLine.strip().split(" ");
 						if (subWords[0].equals("sphere:")) {
-							String[] sLocation = subWords[1].strip().split(",");
-							Point3D L = new Point3D(Double.parseDouble(sLocation[0]), Double.parseDouble(sLocation[1]),
-									Double.parseDouble(sLocation[2]));
+							Point3D L = Point3D.parsePoint(subWords[1].strip().split(","));
 							double r = Double.parseDouble(subWords[2]);
 							Material M = null;
 							for (int i = 0; i < matls.size(); i++) {
@@ -116,13 +116,10 @@ public class FileHandler {
 								throw new NullPointerException("Undeclared material");
 							}
 							solids.add(new Sphere(L, r, M));
+							
 						} else if (subWords[0].equals("plane:")) {
-							String[] sPoint = subWords[1].strip().split(",");
-							Point3D P = new Point3D(Double.parseDouble(sPoint[0]), Double.parseDouble(sPoint[1]),
-									Double.parseDouble(sPoint[2]));
-							String[] sNormal = subWords[2].strip().split(",");
-							Vector V = new Vector(Double.parseDouble(sNormal[0]), Double.parseDouble(sNormal[1]),
-									Double.parseDouble(sNormal[2]));
+							Point3D P = Point3D.parsePoint(subWords[1].strip().split(","));
+							Vector V = Vector.parseVector(subWords[2].strip().split(","));
 							Material M = null;
 							for (int i = 0; i < matls.size(); i++) {
 								if (matls.get(i).getName().equals(subWords[3])) {
@@ -133,11 +130,13 @@ public class FileHandler {
 								throw new NullPointerException("Undeclared material");
 							}
 							solids.add(new Plane(P, V, M));
+							
 						}
 						subLine = br.readLine();
 					}
 					result[6] = solids;
 				}
+
 			}
 			br.close();
 		} catch (FileNotFoundException e) {
@@ -154,5 +153,4 @@ public class FileHandler {
 		return new byte[] { (byte) (n >> 0 & 0xff), (byte) (n >> 8 & 0xff), (byte) (n >> 16 & 0xff),
 				(byte) (n >> 24 & 0xff) };
 	}
-
 }
