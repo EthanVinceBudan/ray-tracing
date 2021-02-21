@@ -18,4 +18,4 @@ scene {
 	plane: 0,0,-1 0,0,1 white_shiny
 }
 
-out: test3x3.bmp
+out: sample.bmp
