@@ -5,6 +5,7 @@ samples: 20
 camera: 0,0,0 1.5
 
 materials {
+
 	// name: R,G,B is_emitter is_sink
 	red_shiny: 1,0,0 false false
 	white_shiny: 1,1,1 false false
@@ -12,6 +13,7 @@ materials {
 }
 
 scene {
+
 	// type: location [parameters] material
 	sphere: 3,0,0 1 red_shiny
 	sphere: -2,-2,15 10 light
