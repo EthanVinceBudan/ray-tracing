@@ -66,7 +66,7 @@ public class Scene {
 		}
 
 		FileHandler.saveImage(imageData, width, height, filename);
-		System.out.println("\nFrame completed.");
+		System.out.printf("\nFrame completed. Image saved to %s\n", filename);
 
 	}
 
