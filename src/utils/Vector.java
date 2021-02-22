@@ -2,6 +2,10 @@ package utils;
 
 import java.util.Random;
 
+/**
+ * The {@code Vector} class is used to perform operations using 3-dimensional vectors.
+ * @author Ethan Vince-Budan
+ */
 public class Vector {
 	private double dx, dy, dz;
 
@@ -180,7 +184,6 @@ public class Vector {
 	
 	/**
 	 * Returns a {@code Vector} with the dimensions specified in the {@code String[]} argument.
-	 * 
 	 * @param S {@code String[]} array to be parsed.
 	 * @return {@code Vector} with (x, y, z) dimensions extracted from the given {@code String[]}.
 	 * @throws IllegalArgumentException if the given {@code String[]} is not of length 3.
