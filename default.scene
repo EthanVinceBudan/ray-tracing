@@ -1,5 +1,25 @@
+/*
+This file exists to quickly set up a scene to be
+rendered by the program. The actual parsing of this file
+is quite lenient, so the relative ordering of statements
+can generally be modified. This comes with some exceptions:
+	1. The size statement must come before the camera
+		declaration, as the camera needs dimensions to be
+		properly initialized.
+	2. The materials section must come before the scene
+		section, as the materials designated to be used
+		must be declared beforehand.
+As with most parsed languages, blank lines are ignored.
+Comments can be written using a double slash ("//"),
+however this is only strictly enforced within the materials
+and scene sections as the statements within require specific
+names to be parsed correctly. Outside of these sections,
+anything that does not match a meaningful statement will be
+ignored.
+*/
+
 size: 1920 1080
-depth: 4
+depth: 2
 samples: 20
 
 camera: 0,0,0 1.5
