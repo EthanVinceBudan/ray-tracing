@@ -10,6 +10,11 @@ import objects.*;
  */
 public class Scene {
 
+	/**
+	 * Program entry point.
+	 * @param args Command line arguments.
+	 * @throws InterruptedException ?
+	 */
 	public static void main(String[] args) throws InterruptedException {
 		
 		Object[] config = new Object[0];
