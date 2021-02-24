@@ -1,4 +1,6 @@
 /bin
+/javadoc
+
 *.bmp
 .project
 .classpath
