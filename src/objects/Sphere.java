@@ -3,25 +3,42 @@ package objects;
 import materials.Material;
 import utils.*;
 
+/**
+ * Sphere class.
+ * @author Ethan Vince-Budan
+ */
 public class Sphere extends Solid {
 	private Point3D origin;
 	private double radius;
 
+	/**
+	 * Constructor for sphere.
+	 * @param C Point.
+	 * @param R Radius.
+	 * @param m Material.
+	 */
 	public Sphere(Point3D C, double R, Material m) {
 		super(m);
 		this.origin = C;
 		this.radius = R;
 	}
 
+	/**
+	 * Center.
+	 * @return Center.
+	 */
 	public Point3D getCenter() {
 		return this.origin;
 	}
 
+	/**
+	 * Radius.
+	 * @return Radius.
+	 */
 	public double getRadius() {
 		return this.radius;
 	}
 
-	// Detecting a ray-sphere collision
 	public Point3D detectCollision(Ray R) {
 		Vector OR = new Vector(R.getOrigin());
 		Vector C = new Vector(this.getCenter());

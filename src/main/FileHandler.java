@@ -8,8 +8,19 @@ import java.util.ArrayList;
 import objects.*;
 import materials.Colour;
 
+/**
+ * File handler class
+ * @author Ethan Vince-Budan
+ */
 public class FileHandler {
 
+	/**
+	 * Saves an image to disk.
+	 * @param data Image data.
+	 * @param W Horizontal resoluion.
+	 * @param H Vertical resolution.
+	 * @param f Path to file.
+	 */
 	public static void saveImage(Colour[] data, int W, int H, String f) {
 		File file = new File(f);
 
@@ -55,6 +66,11 @@ public class FileHandler {
 		}
 	}
 
+	/**
+	 * Parses a .scene file.
+	 * @param fileName Path to file.
+	 * @return Entire description of the desired scene.
+	 */
 	public static Object[] parseFile(String fileName) {
 		File file = new File(fileName);
 		// width, height, depth, samples, Camera, filename, solids
@@ -150,6 +166,10 @@ public class FileHandler {
 		return result;
 	}
 	
+	/**
+	 * Opens the desired file.
+	 * @param path Path to file.
+	 */
 	public static void open(String path) {
 		File file = new File(path);
 		try {
@@ -160,6 +180,11 @@ public class FileHandler {
 		}
 	}
 
+	/**
+	 * Converts an int to an array of bytes.
+	 * @param n Number to convert.
+	 * @return Array of bytes.
+	 */
 	private static byte[] intToByteArray(int n) {
 		return new byte[] { (byte) (n >> 0 & 0xff), (byte) (n >> 8 & 0xff), (byte) (n >> 16 & 0xff),
 				(byte) (n >> 24 & 0xff) };

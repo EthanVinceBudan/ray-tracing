@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import materials.Colour;
 import objects.*;
 
+/**
+ * Scene class.
+ * @author Ethan Vince-Budan
+ */
 public class Scene {
 
 	public static void main(String[] args) throws InterruptedException {

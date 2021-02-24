@@ -3,11 +3,21 @@ package objects;
 import materials.Material;
 import utils.*;
 
+/**
+ * Plane class
+ * @author Ethan Vince-Budan
+ */
 public class Plane extends Solid {
 
 	private Point3D point;
 	private Vector normal;
 
+	/**
+	 * Constructor for plane.
+	 * @param p Point.
+	 * @param N Normal.
+	 * @param m Material.
+	 */
 	public Plane(Point3D p, Vector N, Material m) {
 		super(m);
 		this.point = p;
@@ -15,7 +25,6 @@ public class Plane extends Solid {
 		this.normal.normalize();
 	}
 
-	// Detecting a ray-plane collision
 	public Point3D detectCollision(Ray R) {
 		if (R.getDirection().dotProduct(this.normal) == 0) {
 			return null;

@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 import materials.Colour;
 
+/**
+ * Renderer class.
+ * @author Ethan Vince-Budan
+ */
 public class Renderer extends Thread {
 
 	private Thread t;
@@ -17,6 +21,13 @@ public class Renderer extends Thread {
 	private Colour[] data;
 	private volatile double percent;
 
+	/**
+	 * Constructor for Renderer.
+	 * @param S All objects in the scene.
+	 * @param C Scene camera.
+	 * @param n Number of samples.
+	 * @param m Depth of path tracing.
+	 */
 	public Renderer(ArrayList<Solid> S, Camera C, int n, int m) {
 		this.scene = S;
 		this.cam = C;
@@ -24,6 +35,10 @@ public class Renderer extends Thread {
 		this.MAX_DEPTH = m;
 	}
 
+	/**
+	 * Renders a frame.
+	 * @return Image data.
+	 */
 	public Colour[] renderFrame() {
 		Colour[] result = new Colour[cam.getWidth() * cam.getHeight()];
 		Ray[] rays = cam.getViewRays();
@@ -40,6 +55,13 @@ public class Renderer extends Thread {
 		return result;
 	}
 
+	/**
+	 * Recursively determines the colour of a pixel.
+	 * @param scene Objects in the scene.
+	 * @param r Incoming ray.
+	 * @param depth Current depth of trace.
+	 * @return Colour data.
+	 */
 	public double[] TraceRay(ArrayList<Solid> scene, Ray r, int depth) {
 		// TODO Get something specular - BRDF?
 		if (depth > MAX_DEPTH) {
@@ -79,14 +101,26 @@ public class Renderer extends Thread {
 		this.data = this.renderFrame();
 	}
 
+	/**
+	 * Data.
+	 * @return Data.
+	 */
 	public Colour[] getData() {
 		return this.data;
 	}
 
+	/**
+	 * Thread.
+	 * @return Thread.
+	 */
 	public Thread getThread() {
 		return this.t;
 	}
 
+	/**
+	 * Percent.
+	 * @return Percent.
+	 */
 	public double getPercent() {
 		return this.percent;
 	}
