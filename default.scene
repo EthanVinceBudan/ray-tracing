@@ -19,7 +19,7 @@ ignored.
 */
 
 size: 1920 1080
-depth: 2
+depth: 3
 samples: 20
 
 camera: 0,0,0 1.5
@@ -35,9 +35,9 @@ materials {
 scene {
 
 	// type: location [parameters] material
-	sphere: 3,0,0 1 red_shiny
-	sphere: -2,-2,15 10 light
-	plane: 0,0,-1 0,0,1 white_shiny
+	sphere: 3,0,0 1 red_shiny // centerpeice
+	sphere: 0,0,100 80 light // light
+	plane: 0,0,-1 0,0,1 white_shiny // floor
 }
 
 out: sample.bmp
