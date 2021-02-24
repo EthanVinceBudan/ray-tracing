@@ -1,6 +1,7 @@
 /bin
 /javadoc
 
+*.jar
 *.bmp
 .project
 .classpath
