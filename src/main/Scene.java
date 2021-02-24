@@ -7,8 +7,20 @@ import objects.*;
 public class Scene {
 
 	public static void main(String[] args) throws InterruptedException {
-
-		Object[] config = FileHandler.parseFile(args[0]);
+		
+		Object[] config = new Object[0];
+		if (args.length == 0) {
+			config = FileHandler.parseFile("default.scene");
+		} else if (args.length == 1) {
+			if (args[0].equals("-doc")) {
+				FileHandler.open("javadoc/allclasses-index.html");
+				System.exit(0);
+			}
+			config = FileHandler.parseFile(args[0]);
+		} else {
+			System.out.println("Incorrect number of arguments.");
+			System.exit(0);
+		}
 
 		int width = (int)config[0];
 		int height = (int)config[1];

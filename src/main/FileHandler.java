@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Desktop;
 import java.io.*;
 import utils.*;
 import materials.*;
@@ -147,6 +148,16 @@ public class FileHandler {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public static void open(String path) {
+		File file = new File(path);
+		try {
+			Desktop.getDesktop().open(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private static byte[] intToByteArray(int n) {
